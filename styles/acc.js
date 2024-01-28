@@ -128,7 +128,7 @@ function facc_change_Item(acc_item_header) {
             else {
                 // a htmlpage from in training, catalog or ...
                 //url = "https://technical-grow-solutions.github.io/" + acc.id + "/" + acc_menu_tree.join("/") + "/index.html";
-                url = "/" + acc.id + "/" + acc_menu_tree.join("/") + "/index.html";
+                url = "/html/" + acc.id + "/" + acc_menu_tree.join("/") + "/index.html";
                 //https://technical-grow-solutions.github.io/catalog/devices/clone-booster/index.html 
                 console.log("URL traning/catalog: ", url);
                 let div = document.createElement("div");
