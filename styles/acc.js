@@ -120,7 +120,7 @@ function facc_change_Item(acc_item_header) {
             else if (acc.id == "devices") {
                 // These always goes back to device version.
                 //url = "/devices/clone-booster" + "/1.0" + "/html/" + acc_menu_tree[acc_menu_tree.length - 1] + ".html";
-                url = "/html/" + acc_menu_tree[acc_menu_tree.length - 1] + ".html";
+                url = "/recipes/html/" + acc_menu_tree[acc_menu_tree.length - 1] + ".html";
                 fFetchAndRenderData(acc_item_body_content, url.toLowerCase());
                 fcalcBodyContent();
             }
