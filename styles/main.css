@@ -183,7 +183,7 @@ body {
 }
 
 body.left {
-  cursor: url("/images/select-left.cur"), auto;
+  cursor: url("/recipes/images/select-left.cur"), auto;
 }
 
 /* =========== BACKGROUD IMAGE =========== */
