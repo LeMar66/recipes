@@ -1,116 +1,143 @@
-let hoursContainer;
-let minutesContainer;
-let secondsContainer;
-let tickElements;
-let daynameContainer;
-let dayContainer;
-let monthContainer;
-let yearContainer;
+/**
+ * Clock.js - Geoptimaliseerd voor ESP32.
+ * Regelt de tijd, datum en de natuurlijke 'val-animatie' van de cijfers.
+ */
+
+let hoursContainer, minutesContainer, secondsContainer, tickElements;
+let daynameContainer, dayContainer, monthContainer;
 let last = new Date(0);
-let tickState = true;
 
+/**
+ * Start de klok en koppelt de DOM-elementen.
+ */
 function clock_Init() {
-    hoursContainer = document.querySelector(".hours");
-    minutesContainer = document.querySelector(".minutes");
-    secondsContainer = document.querySelector(".seconds");
-    tickElements = Array.from(document.querySelectorAll(".tick"));
+  hoursContainer = document.querySelector(".hours");
+  minutesContainer = document.querySelector(".minutes");
+  secondsContainer = document.querySelector(".seconds");
+  tickElements = document.querySelectorAll(".tick");
 
-    daynameContainer = document.querySelector(".dayname");
-    dayContainer = document.querySelector(".day");
-    monthContainer = document.querySelector(".month");
+  daynameContainer = document.querySelector(".dayname");
+  dayContainer = document.querySelector(".day");
+  monthContainer = document.querySelector(".month");
 
-    last = new Date(0);
-    last.setUTCHours(-25);
-    tickState = true;
-    setInterval(updateTime, 1000);
+  // Forceer update bij start
+  last = new Date(0);
+  last.setHours(-1);
 
+  setInterval(updateTime, 1000);
+  updateTime();
 }
+
+/**
+ * Controleert elke seconde of er cijfers moeten verspringen.
+ */
 function updateTime() {
-    var now = new Date;
+  const now = new Date();
 
-    var lastHours = last.getHours().toString();
-    var nowHours = now.getHours().toString();
-    if (lastHours !== nowHours) {
-        updateContainer(hoursContainer, nowHours);
-    }
-    var lastMinutes = last.getMinutes().toString();
-    var nowMinutes = now.getMinutes().toString();
-    if (lastMinutes !== nowMinutes) {
-        updateContainer(minutesContainer, nowMinutes);
-    }
-    var lastSeconds = last.getSeconds().toString();
-    var nowSeconds = now.getSeconds().toString();
-    if (lastSeconds !== nowSeconds) {
-        tick();
-        updateContainer(secondsContainer, nowSeconds);
-    }
+  // 1. TIJD: Uren, Minuten, Seconden
+  const timeParts = [
+    {
+      container: hoursContainer,
+      nowVal: now.getHours(),
+      lastVal: last.getHours(),
+    },
+    {
+      container: minutesContainer,
+      nowVal: now.getMinutes(),
+      lastVal: last.getMinutes(),
+    },
+    {
+      container: secondsContainer,
+      nowVal: now.getSeconds(),
+      lastVal: last.getSeconds(),
+    },
+  ];
 
-    /*Date*/
-    var lastdayname = last.toDateString(navigator.language).slice(0, 2);
-    var nowDayname = now.toDateString(navigator.language).slice(0, 2);
-    if (lastdayname !== nowDayname) {
-        var first = daynameContainer.firstElementChild;
-        /*updateNumber(first, nowDayname);*/
-        if (first.lastElementChild.textContent !== nowDayname) {
-            updateNumber(first, nowDayname);
-        }
+  timeParts.forEach((part) => {
+    if (part.nowVal !== part.lastVal) {
+      updateContainer(part.container, part.nowVal.toString().padStart(2, "0"));
+      if (part.container === secondsContainer) tick();
     }
+  });
 
-    var lastday = last.getDate().toString();
-    var nowDay = now.getDate().toString();
-    if (lastday !== nowDay) {
-        updateContainer(dayContainer, nowDay);
+  // 2. DATUM: Taal-gevoelige dagnaam (via browser Intl API)
+  // Zie [MDN Intl.DateTimeFormat](https://developer.mozilla.org)
+  const nowDayname = now
+    .toLocaleDateString(undefined, { weekday: "short" })
+    .slice(0, 3)
+    .toLowerCase();
+  if (last.getDay() !== now.getDay()) {
+    const first = daynameContainer.firstElementChild;
+    if (first && first.lastElementChild.textContent !== nowDayname) {
+      updateNumber(first, nowDayname);
     }
+  }
 
-    var lastMonth = last.getMonth();
-    var nowMonth = now.getMonth();
-    if (lastMonth !== nowMonth) {
-        nowMonth = nowMonth + 1;
-        updateContainer(monthContainer, nowMonth.toString());
-    }
+  // 3. DATUM: Dag (01-31)
+  if (last.getDate() !== now.getDate()) {
+    updateContainer(dayContainer, now.getDate().toString().padStart(2, "0"));
+  }
 
-    var lastyear = last.getFullYear();
-    var nowYear = now.getFullYear();
-    if (lastyear !== nowYear) {
-        document.getElementById("footer-year").innerHTML = nowYear;
-    }
+  // 4. DATUM: Maand (01-12)
+  if (last.getMonth() !== now.getMonth()) {
+    updateContainer(
+      monthContainer,
+      (now.getMonth() + 1).toString().padStart(2, "0"),
+    );
+  }
 
-    last = now;
+  // 5. JAAR: Update footer automatisch
+  if (last.getFullYear() !== now.getFullYear()) {
+    const footerYear = document.getElementById("footer-year");
+    if (footerYear) footerYear.textContent = now.getFullYear();
+  }
+
+  last = now;
 }
 
+/**
+ * Laat de dubbele punt knipperen.
+ */
 function tick() {
-    tickElements.forEach(t => t.classList.toggle('tick-show'));
+  tickElements.forEach((t) => t.classList.toggle("tick-show"));
 }
 
-function updateContainer(container, newTime) {
-    var time = newTime.split('');
-    if (time.length === 1) {
-        time.unshift('0');
-    }
-    var first = container.firstElementChild;
-    if (first.lastElementChild.textContent !== time[0]) {
-        updateNumber(first, time[0]);
-    }
-    var last = container.lastElementChild;
-    if (last.lastElementChild.textContent !== time[1]) {
-        updateNumber(last, time[1]);
-    }
+/**
+ * Verdeelt de 2 cijfers over .first en .second divs.
+ */
+function updateContainer(container, timeStr) {
+  const digits = timeStr.split("");
+  const firstDigit = container.querySelector(".first");
+  const secondDigit = container.querySelector(".second");
+
+  if (firstDigit && firstDigit.lastElementChild.textContent !== digits[0]) {
+    updateNumber(firstDigit, digits[0]);
+  }
+  if (secondDigit && secondDigit.lastElementChild.textContent !== digits[1]) {
+    updateNumber(secondDigit, digits[1]);
+  }
 }
 
-function updateNumber(element, number) {
-    //element.lastElementChild.textContent = number
-    let classname = element.parentElement.parentElement.classList[0] + "-move";
-    let second = element.lastElementChild.cloneNode(true);
-    second.textContent = number;
-    /*console.log("CLassname:", classname);*/
-    /*  if (InAwesome) {
-          console.log("CLassname:", classname);
-          classname = classname + "-awesome";
-      }*/
-    element.appendChild(second);
-    element.classList.add(classname);
-    setTimeout(function () {
-        element.classList.remove(classname);
-        element.removeChild(element.firstElementChild);
-    }, 500)
+/**
+ * Voert de 'val' animatie uit (nieuw cijfer komt van boven).
+ */
+function updateNumber(element, value) {
+  // Bouwt class bijv. "hours-move"
+  const parentClass = element.parentElement.classList[0];
+  const moveClass = `${parentClass}-move`;
+
+  const nextNumber = element.lastElementChild.cloneNode(true);
+  nextNumber.textContent = value;
+
+  // NIEUW CIJFER BOVENAAN VOOR VAL-EFFECT
+  element.prepend(nextNumber);
+  element.classList.add(moveClass);
+
+  setTimeout(() => {
+    element.classList.remove(moveClass);
+    // Verwijder het oude cijfer onderaan
+    if (element.children.length > 1) {
+      element.removeChild(element.lastElementChild);
+    }
+  }, 500); // Gelijk aan CSS animatie duur
 }
