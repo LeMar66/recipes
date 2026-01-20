@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <html>
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="author" content="M.F.Saathof" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+      />
+      <link href="styles/main.css" rel="stylesheet" type="text/css" />
+      <title>Recipes</title>
+
+      <link href="images/recipes.ico" rel="icon" type="image/x-icon" />
+      <!-- Alle JavaScript bestanden voor Advanced Grow Devices -->
+      <script src="styles/storage.js" defer></script>
+      <script src="styles/clock.js" defer></script>
+      <script src="styles/scrll.js" defer></script>
+      <script src="styles/acc.js" defer></script>
+      <script src="styles/main.js" defer></script>
+    </head>
+    <body>
+      <div class="bgimage"></div>
+      <div class="chapter"></div>
+      <div class="clock">
+        <div class="time">
+          <div class="hours">
+            <div class="first">
+              <div class="number">0</div>
+            </div>
+            <div class="second">
+              <div class="number">0</div>
+            </div>
+          </div>
+          <div class="tick">:</div>
+          <div class="minutes">
+            <div class="first">
+              <div class="number">0</div>
+            </div>
+            <div class="second">
+              <div class="number">0</div>
+            </div>
+          </div>
+          <div class="tick">:</div>
+          <div class="seconds">
+            <div class="first">
+              <div class="number">0</div>
+            </div>
+            <div class="second">
+              <div class="number">0</div>
+            </div>
+          </div>
+        </div>
+        <div class="date">
+          <div class="dayname">
+            <div class="first">
+              <div class="number">mon</div>
+            </div>
+          </div>
+          <div class="divider">-</div>
+          <div class="day">
+            <div class="first">
+              <div class="number">0</div>
+            </div>
+            <div class="second">
+              <div class="number">0</div>
+            </div>
+          </div>
+          <div class="divider">-</div>
+          <div class="month">
+            <div class="first">
+              <div class="number">0</div>
+            </div>
+            <div class="second">
+              <div class="number">0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="footer-credit">
+          Copyright&ensp;&copy2016-
+          <span id="footer-year"></span>
+          <span id="footer-company"></span>
+          <span
+            >-&ensp;All Rights Reserved&emsp;||&emsp;UI-GUI-UX- design
+            by:&ensp;</span
+          >
+          <span id="footer-author-alias"></span>
+        </div>
+      </div>
+      <div class="header" translate="no">
+        <ul
+          class="logo hidden"
+          id="logo"
+          onmouseover="fexpandLogo()"
+          onmouseout="fcollapseLogo()"
+        >
+          <a id="logo-list" href=""></a>
+        </ul>
+      </div>
+      <div class="loader">
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <span class="loading">Loading...</span>
+      </div>
+      <div class="menu">
+        <div class="rbut" id="Profile">
+          <a onclick="faddUIContent('data/profile-min.json', 'profile')">
+            <div class="rbut-content">
+              <img src="images/profile.png" />
+              <h2>Profile</h2>
+            </div>
+          </a>
+        </div>
+        <div class="rbut" id="Device">
+          <a onclick="faddUIContent('data/recipes.json', 'devices')">
+            <div class="rbut-content">
+              <img src="images/recipes.png" />
+              <h2>Recipes</h2>
+            </div>
+          </a>
+        </div>
+        <div class="rbut" id="WWW">
+          <a onclick="ftoggleWWWMenu()">
+            <div class="rbut-content">
+              <img
+                src="https://technical-grow-solutions.github.io/images/www.png"
+              />
+              <h2>Internet</h2>
+            </div>
+          </a>
+        </div>
+        <div class="rbut" id="scrlltotop">
+          <a onclick="faddUIContent('/devices/html/cookie.html', '')">
+            <!--<a onclick='faddUIContent("/devices/html/login [devices].html", "")'>-->
+            <div class="rbut-content"></div>
+          </a>
+        </div>
+        <div class="rbut" id="Training">
+          <a
+            onclick="
+              faddUIContent(
+                'https://technical-grow-solutions.github.io/training/data/training-min.json',
+                'training',
+                false,
+              )
+            "
+          >
+            <div class="rbut-content">
+              <img
+                src="https://technical-grow-solutions.github.io/images/training.png"
+              />
+              <h2>Training</h2>
+            </div>
+          </a>
+        </div>
+        <div class="rbut" id="Store">
+          <a
+            onclick="
+              faddUIContent(
+                'https://technical-grow-solutions.github.io/store/index.html',
+                'store',
+                false,
+              )
+            "
+          >
+            <div class="rbut-content">
+              <img
+                src="https://technical-grow-solutions.github.io/images/store.png"
+              />
+              <h2>Store</h2>
+            </div>
+          </a>
+        </div>
+        <div class="rbut" id="Catalog">
+          <a
+            onclick="
+              faddUIContent(
+                'https://technical-grow-solutions.github.io/catalog/data/catalog-min.json',
+                'catalog',
+                false,
+              )
+            "
+          >
+            <div class="rbut-content">
+              <img
+                src="https://technical-grow-solutions.github.io/images/catalog.png"
+              />
+              <h2>Catalog</h2>
+            </div>
+          </a>
+        </div>
+        <div class="rbut" id="Forum">
+          <a
+            onclick="
+              faddUIContent(
+                'https://technical-grow-solutions.github.io/forum/html/index.html',
+                'forum',
+                false,
+              )
+            "
+          >
+            <div class="rbut-content">
+              <img
+                src="https://technical-grow-solutions.github.io/images/forum.png"
+              />
+              <h2>Forum</h2>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="scrllind">
+        <div class="scrllindbar"></div>
+      </div>
+      <div class="scrolltotop">
+        <span class="scrolltotop-progress"></span>
+      </div>
+      <div class="snackbar"><b>Help!!</b></div>
+      <div class="ui">
+        <div class="ui-content" onscroll="scrollPercentage"></div>
+      </div>
+    </body>
+  </html>
+</html>

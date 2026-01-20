@@ -1,0 +1,343 @@
+{
+    "id": "timezones",
+    "Africa": {
+        "TZ": [
+            {
+                "city": "Abidjan",
+                "tz": "GMT0"
+            }
+        ]
+    },
+    "America": {
+        "TZ": [
+            {
+                "city": "Adak",
+                "tz": "HST10HDT,M3.2.0,M11.1.0"
+            }
+        ]
+    },
+    "Antarctica": {
+        "TZ": [
+            {
+                "city": "Casey",
+                "tz": "<+11>-11"
+            }
+        ]
+    },
+    "Arctic": {
+        "TZ": [
+            {
+                "city": "Longyearbyen",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            }
+        ]
+    },
+    "Asia": {
+        "TZ": [
+            {
+                "city": "Aden",
+                "tz": "<+03>-3"
+            }
+        ]
+    },
+    "Atlantic": {
+        "TZ": [
+            {
+                "city": "Azores",
+                "tz": "<-01>1<+00>,M3.5.0/0,M10.5.0/1"
+            }
+        ]
+    },
+    "Australia": {
+        "TZ": [
+            {
+                "city": "Adelaide",
+                "tz": "ACST-9:30ACDT,M10.1.0,M4.1.0/3"
+            }
+        ]
+    },
+    "Europe": {
+        "TZ": [
+            {
+                "city": "Amsterdam",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Andorra",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Astrakhan",
+                "tz": "<+04>-4"
+            },
+            {
+                "city": "Athens",
+                "tz": "EET-2EEST,M3.5.0/3,M10.5.0/4"
+            },
+            {
+                "city": "Belgrade",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Berlin",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Bratislava",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Brussels",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Brussels",
+                "tz": "EET-2EEST,M3.5.0/3,M10.5.0/4"
+            },
+            {
+                "city": "Budapest",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Copenhagen",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Dublin",
+                "tz": "IST-1GMT0,M10.5.0,M3.5.0/1"
+            },
+            {
+                "city": "Helsinki",
+                "tz": "EET-2EEST,M3.5.0/3,M10.5.0/4"
+            },
+            {
+                "city": "Istanbul",
+                "tz": "<+03>-3"
+            },
+            {
+                "city": "Lisbon ",
+                "tz": "WET0WEST,M3.5.0/1,M10.5.0"
+            },
+            {
+                "city": "London",
+                "tz": "GMT0BST,M3.5.0/1,M10.5.0"
+            },
+            {
+                "city": "Luxembourg",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Madrid",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Malta",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Oslo",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Paris",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Prague",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Rome",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "San_Marino",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Sarajevo",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Stockholm",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Vienna",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Warsaw",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Zagreb",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            },
+            {
+                "city": "Zurich",
+                "tz": "CET-1CEST,M3.5.0,M10.5.0/3"
+            }
+        ]
+    },
+    "Indian": {
+        "TZ": [
+            {
+                "city": "Antananarivo",
+                "tz": "EAT-3"
+            }
+        ]
+    },
+    "Pacific": {
+        "TZ": [
+            {
+                "city": "Apia",
+                "tz": "<+13>-13"
+            }
+        ]
+    },
+    "Etc": {
+        "TZ": [
+            {
+                "city": "GMT",
+                "tz": "GMT0"
+            },
+            {
+                "city": "GMTm0",
+                "tz": "GMT0"
+            },
+            {
+                "city": "GMTm1",
+                "tz": "<+01>-1"
+            },
+            {
+                "city": "GMTm2",
+                "tz": "<+02>-2"
+            },
+            {
+                "city": "GMTm3",
+                "tz": "<+03>-3"
+            },
+            {
+                "city": "GMTm4",
+                "tz": "<+04>-4"
+            },
+            {
+                "city": "GMTm5",
+                "tz": "<+05>-5"
+            },
+            {
+                "city": "GMTm6",
+                "tz": "<+06>-6"
+            },
+            {
+                "city": "GMTm7",
+                "tz": "<+07>-7"
+            },
+            {
+                "city": "GMTm8",
+                "tz": "<+08>-8"
+            },
+            {
+                "city": "GMTm9",
+                "tz": "<+09>-9"
+            },
+            {
+                "city": "GMTm10",
+                "tz": "<+10>-10"
+            },
+            {
+                "city": "GMTm11",
+                "tz": "<+11>-11"
+            },
+            {
+                "city": "GMTm12",
+                "tz": "<+12>-12"
+            },
+            {
+                "city": "GMTm13",
+                "tz": "<+13>-13"
+            },
+            {
+                "city": "GMTm14",
+                "tz": "<+14>-14"
+            },
+            {
+                "city": "GMT0",
+                "tz": "GMT0"
+            },
+            {
+                "city": "GMTp0",
+                "tz": "GMT0"
+            },
+            {
+                "city": "GMTp1",
+                "tz": "<-01>1"
+            },
+            {
+                "city": "GMTp2",
+                "tz": "<-02>2"
+            },
+            {
+                "city": "GMTp3",
+                "tz": "<-03>3"
+            },
+            {
+                "city": "GMTp4",
+                "tz": "<-04>4"
+            },
+            {
+                "city": "GMTp5",
+                "tz": "<-05>5"
+            },
+            {
+                "city": "GMTp6",
+                "tz": "<-06>6"
+            },
+            {
+                "city": "GMTp7",
+                "tz": "<-07>7"
+            },
+            {
+                "city": "GMTp8",
+                "tz": "<-08>8"
+            },
+            {
+                "city": "GMTp9",
+                "tz": "<-09>9"
+            },
+            {
+                "city": "GMTp10",
+                "tz": "<-10>10"
+            },
+            {
+                "city": "GMTp11",
+                "tz": "<-11>11"
+            },
+            {
+                "city": "GMTp12",
+                "tz": "<-12>12"
+            },
+            {
+                "city": "UCT",
+                "tz": "UTC0"
+            },
+            {
+                "city": "UTC",
+                "tz": "UTC0"
+            },
+            {
+                "city": "Greenwich",
+                "tz": "GMT0"
+            },
+            {
+                "city": "Universal",
+                "tz": "UTC0"
+            },
+            {
+                "city": "Zulu",
+                "tz": "UTC0"
+            }
+        ]
+    }
+}

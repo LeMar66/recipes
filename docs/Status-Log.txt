@@ -1,0 +1,13 @@
+📝 Project Status-Log: De Ultieme Recepten-Accordeon
+Wat we hebben bereikt:
+Dynamische Gelaagdheid: De accordeon werkt nu recursief (Land > Categorie > Recept).
+Slimme Rendering: De code herkent sub-items in de JSON (acc_data) en tekent deze direct. Alleen bij de laatste stap (het recept zelf) wordt een fetch gedaan naar de server.
+SafePath URL's: Padnamen worden automatisch omgezet naar lowercase en URL-vriendelijke tekst (met %20 voor spaties).
+Auto-Height: De fcalcBodyContent functie berekent de hoogte van alle actieve lagen zodat geneste items passen.
+De openstaande uitdaging (voor de volgende keer):
+Smooth Animations: Het openen van diepere lagen is momenteel "schokkerig". Dit komt doordat de max-height van de ouder-elementen moet mee-animeren wanneer een kind-element uitklapt.
+Transition Sync: We moeten de CSS en JS setTimeout finetunen zodat de animatie vloeiend voelt, ongeacht hoe diep je in het menu zit.
+
+
+Korte tip voor als je weer begint:
+De "schok" die je nu ziet komt vaak doordat max-height op een vaste waarde (zoals 1000px) springt in plaats van de exacte hoogte, of doordat de ouder-laag niet weet dat hij tijdens de animatie van de kinder-laag ook al moet groeien.

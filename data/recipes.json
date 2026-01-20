@@ -1,0 +1,242 @@
+{
+    "id": "recipes",
+    "type": "accordion",
+    "translate": true,
+    "items": [
+        {
+            "item": "chinese",
+            "items": [
+                {
+                    "item": "basic ingredients"
+                },
+                {
+                    "item": "appetizers"
+                },
+                {
+                    "item": "desserts"
+                },
+                {
+                    "item": "main dish",
+                    "items": [
+                        {
+                            "item": "foe yung hai",
+                            "translate": false
+                        },
+                        {
+                            "item": "babi pangang",
+                            "translate": false
+                        }
+                    ]
+                },
+                {
+                    "item": "snacks"
+                }
+            ]
+        },
+        {
+            "item": "greek",
+            "items": [
+                {
+                    "item": "basic ingredients"
+                },
+                {
+                    "item": "appetizers"
+                },
+                {
+                    "item": "desserts"
+                },
+                {
+                    "item": "main dish",
+                    "items": [
+                        {
+                            "item": "foe yung hai",
+                            "translate": false
+                        },
+                        {
+                            "item": "babi pangang",
+                            "translate": false
+                        }
+                    ]
+                },
+                {
+                    "item": "snacks"
+                }
+            ]
+        },
+        {
+            "item": "indonesian",
+            "items": [
+                {
+                    "item": "basic ingredients"
+                },
+                {
+                    "item": "appetizers"
+                },
+                {
+                    "item": "desserts"
+                },
+                {
+                    "item": "main dish",
+                    "items": [
+                        {
+                            "item": "ajam pangang pedis",
+                            "translate": false
+                        },
+                        {
+                            "item": "ikan pepesan",
+                            "translate": false
+                        },
+                        {
+                            "item": "babi kecap",
+                            "translate": false
+                        },
+                        {
+                            "item": "lemper",
+                            "translate": false
+                        },
+                        {
+                            "item": "pisang goreng",
+                            "translate": false
+                        },
+                        {
+                            "item": "rendang",
+                            "translate": false
+                        },
+                        {
+                            "item": "roedjak manis",
+                            "translate": false
+                        },
+                        {
+                            "item": "sambal goren telor",
+                            "translate": false
+                        },
+                        {
+                            "item": "sambal goreng temphe",
+                            "translate": false
+                        },
+                        {
+                            "item": "satay sauce",
+                            "translate": false
+                        },
+                        {
+                            "item": "satay ajam",
+                            "translate": false
+                        },
+                        {
+                            "item": "soto ajam",
+                            "translate": false
+                        },
+                        {
+                            "item": "atjar ketimoen",
+                            "translate": false
+                        }
+                    ]
+                },
+                {
+                    "item": "snacks"
+                }
+            ]
+        },
+        {
+            "item": "moroccan",
+            "items": [
+                {
+                    "item": "basic ingredients"
+                },
+                {
+                    "item": "appetizers"
+                },
+                {
+                    "item": "desserts"
+                },
+                {
+                    "item": "main dish"
+                },
+                {
+                    "item": "snacks"
+                }
+            ]
+        },
+        {
+            "item": "mexican",
+            "items": [
+                {
+                    "item": "basic ingredients"
+                },
+                {
+                    "item": "appetizers"
+                },
+                {
+                    "item": "desserts"
+                },
+                {
+                    "item": "main dish"
+                },
+                {
+                    "item": "snacks"
+                }
+            ]
+        },
+        {
+            "item": "surinamese",
+            "items": [
+                {
+                    "item": "basic ingredients"
+                },
+                {
+                    "item": "appetizers"
+                },
+                {
+                    "item": "desserts"
+                },
+                {
+                    "item": "main dish"
+                },
+                {
+                    "item": "snacks"
+                }
+            ]
+        },
+        {
+            "item": "spanish",
+            "items": [
+                {
+                    "item": "basic ingredients"
+                },
+                {
+                    "item": "appetizers"
+                },
+                {
+                    "item": "desserts"
+                },
+                {
+                    "item": "main dish"
+                },
+                {
+                    "item": "snacks"
+                }
+            ]
+        },
+        {
+            "item": "thai",
+            "translate": true,
+            "items": [
+                {
+                    "item": "basic ingredients"
+                },
+                {
+                    "item": "appetizers"
+                },
+                {
+                    "item": "desserts"
+                },
+                {
+                    "item": "main dish"
+                },
+                {
+                    "item": "snacks"
+                }
+            ]
+        }
+    ]
+}
