@@ -1,191 +1,208 @@
 // !!Items has a Unique ID through all the accordion
 let acc;
 let acc_menu_tree;
+
+/**
+ * Initialiseert de accordeon door klik-events aan de headers te koppelen.
+ */
 function acc_Init() {
-    // Get the whole element.
-    acc = document.querySelector(".accordion");
-    const acc_items = acc.querySelectorAll(".acc_item");
-    acc_items.forEach(acc_item => {
-        let acc_item_header = acc_item.firstChild;
-        acc_item_header.addEventListener("click", function () { facc_change_Item(this); });
-    });
+  acc = document.querySelector(".accordion");
+  if (!acc) return;
+
+  const acc_items = acc.querySelectorAll(".acc_item");
+  acc_items.forEach((acc_item) => {
+    // Gebruik firstElementChild om zeker te zijn dat we de header-div pakken
+    let acc_item_header = acc_item.firstElementChild;
+    if (acc_item_header) {
+      acc_item_header.addEventListener("click", function () {
+        facc_change_Item(this);
+      });
+    }
+  });
 }
-// Change Item
+
+/**
+ * Regelt het openen/sluiten van items en het inladen van content.
+ */
 function facc_change_Item(acc_item_header) {
-    // Back to the Item div
-    const acc_item = acc_item_header.parentElement;
-    let acc_item_headers;
-    //console.log("acc_item: ", acc_item);
-    if (acc_item_header.classList.contains("active")) {
-        acc_item_headers = acc_item.querySelectorAll(".acc_item_header.active");
-        acc_item_headers.forEach(acc_Active_Item_Header => {
-            acc_Active_Item_Header.classList.remove("active");
-            acc_Active_Item_Header.nextElementSibling.style.maxHeight = 0;
-        });
+  const acc_item = acc_item_header.parentElement;
+  const isAlreadyActive = acc_item_header.classList.contains("active");
+
+  // 1. Eerst alle actieve 'broertjes' sluiten voor een schone UI
+  const acc_parent_item = acc_item.parentElement;
+  const activeHeaders = acc_parent_item.querySelectorAll(
+    ".acc_item_header.active",
+  );
+
+  activeHeaders.forEach((header) => {
+    if (header !== acc_item_header) {
+      header.classList.remove("active");
+      if (header.nextElementSibling) {
+        header.nextElementSibling.style.maxHeight = 0;
+      }
     }
-    else {
-        // First: De-activate ALL siblings items.
-        const acc_parent_item = acc_item.parentElement;
-        acc_item_headers = acc_parent_item.querySelectorAll(".acc_item_header.active");
-        acc_item_headers.forEach(acc_Active_Item_Header => {
-            if (acc_Active_Item_Header !== acc_item_header) {
-                acc_Active_Item_Header.classList.remove("active");
-                acc_Active_Item_Header.nextElementSibling.style.maxHeight = 0;
-            }
-        });
-        // Second: Acivate this item.
-        const acc_item_body = acc_item_header.nextElementSibling;
-        const acc_item_body_content = acc_item_body.firstElementChild;
-        acc_item_header.classList.add("active");
-        acc_menu_tree = fgetMenuTree();
-        if (acc_item_body_content.childElementCount === 0) {
-            // Has to Fetch
-            let url;
-            if (acc.id == "profile") {
-                // SETTINGS:
-                if (acc_menu_tree[acc_menu_tree.length - 1] == "settings") {
-                    let table = document.createElement("table");
-                    acc_item_body_content.appendChild(table);
-                    let row = document.createElement("tr");
-                    let cell = document.createElement("td");
-                    let el_input = document.createElement("input");
-                    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-                        table.appendChild(row);
-                        row.appendChild(cell);
-                        cell.setAttribute("class", "duo control");
-                        cell.setAttribute("translate", "no");
-                        cell.innerText = "Awesome";
-                        cell = document.createElement("td");
-                        cell.setAttribute("class", "duo control");
-                        row.appendChild(cell);
-                        el_input.setAttribute("class", "toggle");
-                        el_input.setAttribute("type", "checkbox");
-                        el_input.setAttribute("name", "");
-                        el_input.addEventListener("click", ftoggleAweSomeMode);
-                        el_input.checked = settings.awesome;
-                        cell.appendChild(el_input);
-                    }
-                    row = document.createElement("tr");
-                    cell = document.createElement("td");
-                    el_input = document.createElement("input");
-                    table.appendChild(row);
-                    row.appendChild(cell);
-                    cell.innerText = "FullScreen";
-                    cell = document.createElement("td");
-                    row.appendChild(cell);
-                    el_input.setAttribute("class", "toggle");
-                    el_input.setAttribute("type", "checkbox");
-                    el_input.setAttribute("name", "");
-                    el_input.addEventListener("click", ftoggleFullScreen);
-                    el_input.checked = settings.fullscreen;
-                    cell.appendChild(el_input);
-                    row = document.createElement("tr");
-                    cell = document.createElement("td");
-                    el_input = document.createElement("input");
-                    table.appendChild(row);
-                    row.appendChild(cell);
-                    cell.innerText = "Left handed";
-                    cell = document.createElement("td");
-                    row.appendChild(cell);
-                    el_input.setAttribute("class", "toggle");
-                    el_input.setAttribute("type", "checkbox");
-                    el_input.setAttribute("name", "");
-                    el_input.addEventListener("click", ftoggleLeftHand);
-                    el_input.checked = settings.lefthand;
-                    cell.appendChild(el_input);
-                    if (settings.admin) {
-                        row = document.createElement("tr");
-                        cell = document.createElement("td");
-                        el_input = document.createElement("input");
-                        table.appendChild(row);
-                        row.appendChild(cell);
-                        cell.innerText = "Internet access";
-                        cell = document.createElement("td");
-                        row.appendChild(cell);
-                        el_input.setAttribute("class", "toggle");
-                        el_input.setAttribute("type", "checkbox");
-                        el_input.setAttribute("name", "");
-                        el_input.addEventListener("click", ftoggleInternetAccess);
-                        el_input.checked = settings.internetaccess;
-                        cell.appendChild(el_input);
-                    }
-                }
-                else {
-                    // All other features under Profile, Only when InternetAccess is on.
-                    url = "/devices/html/" + acc_menu_tree[acc_menu_tree.length - 1] + ".html";
-                    fFetchAndRenderData(acc_item_body_content, url.toLowerCase());
-                    fcalcBodyContent();
-                }
-            }
-            else if (acc.id == "devices") {
-                // These always goes back to device version.
-                //url = "/devices/clone-booster" + "/1.0" + "/html/" + acc_menu_tree[acc_menu_tree.length - 1] + ".html";
-                url = "/recipes/html/" + acc_menu_tree[acc_menu_tree.length - 1] + ".html";
-                console.log("bla:", url);
-                fFetchAndRenderData(acc_item_body_content, url.toLowerCase());
-                fcalcBodyContent();
-            }
-            else {
-                // a htmlpage from in training, catalog or ...
-                //url = "https://technical-grow-solutions.github.io/" + acc.id + "/" + acc_menu_tree.join("/") + "/index.html";
-                url = "/" + acc.id + "/html/" +  "/" + acc_menu_tree.join("/") + "/index.html";
-                //https://technical-grow-solutions.github.io/catalog/devices/clone-booster/index.html 
-                console.log("URL traning/catalog: ", url);
-                let div = document.createElement("div");
-                div.setAttribute("class", "content");
-                div.setAttribute("translate", "yes");
-                acc_item_body_content.appendChild(div);
-                fFetchAndRenderData(div, url.toLowerCase());
-                fcalcBodyContent();
-            }
-            fcalcBodyContent();
+  });
+
+  // 2. Het geklikte item afhandelen
+  if (isAlreadyActive) {
+    // Als het al open was: sluiten
+    acc_item_header.classList.remove("active");
+    acc_item_header.nextElementSibling.style.maxHeight = 0;
+  } else {
+    // Openen
+    const acc_item_body = acc_item_header.nextElementSibling;
+    const acc_item_body_content = acc_item_body.firstElementChild;
+
+    acc_item_header.classList.add("active");
+    acc_menu_tree = fgetMenuTree();
+
+    // Content inladen als de container nog leeg is
+    if (acc_item_body_content.childElementCount === 0) {
+      if (acc.id === "profile") {
+        if (acc_menu_tree[acc_menu_tree.length - 1] === "settings") {
+          _renderSettingsTable(acc_item_body_content);
+          fcalcBodyContent();
+          // Scroll direct naar de settings
+          fscrollToItem(acc_item_header);
+        } else {
+          let url =
+            `/devices/html/${acc_menu_tree[acc_menu_tree.length - 1]}.html`.toLowerCase();
+          fFetchAndRenderData(acc_item_body_content, url, acc_item_header);
         }
-        else {
-            fcalcBodyContent();
-        }
-        // Feature:
-        // acc_item_header.scrollIntoView();
+      } else if (acc.id === "devices") {
+        let url =
+          `/html/${acc_menu_tree[acc_menu_tree.length - 1]}.html`.toLowerCase();
+        fFetchAndRenderData(acc_item_body_content, url, acc_item_header);
+      } else {
+        // Training, Catalog, etc.
+        let url =
+          `/${acc.id}/${acc_menu_tree.join("/")}/index.html`.toLowerCase();
+        let div = document.createElement("div");
+        div.className = "content";
+        div.setAttribute("translate", "yes");
+        acc_item_body_content.appendChild(div);
+        fFetchAndRenderData(div, url, acc_item_header);
+      }
+    } else {
+      // Reeds geladen, herberekenen en scrollen
+      fcalcBodyContent();
+      fscrollToItem(acc_item_header);
     }
+  }
 }
-async function fFetchAndRenderData(acc_item_body_content, url) {
-    document.querySelector(".loader").classList.add("show");
-    let data = await fgetBodyContent(url);
-    acc_item_body_content.innerHTML = data;
-    setTimeout(() => {
-        fcalcBodyContent();
-        document.querySelector(".loader").classList.remove("show");
-    }, 100);
+
+/**
+ * Genereert de instellingen-tabel met een overzichtelijke Template Literal.
+ */
+function _renderSettingsTable(container) {
+  let tableHTML = `<table>`;
+
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    tableHTML += `
+      <tr>
+        <td class="duo control" translate="no">Awesome</td>
+        <td class="duo control">
+          <input type="checkbox" class="toggle" onclick="ftoggleAweSomeMode()" ${settings.awesome ? "checked" : ""}>
+        </td>
+      </tr>`;
+  }
+
+  tableHTML += `
+    <tr>
+      <td>FullScreen</td>
+      <td><input type="checkbox" class="toggle" onclick="ftoggleFullScreen()" ${settings.fullscreen ? "checked" : ""}></td>
+    </tr>
+    <tr>
+      <td>Left handed</td>
+      <td><input type="checkbox" class="toggle" onclick="ftoggleLeftHand()" ${settings.lefthand ? "checked" : ""}></td>
+    </tr>`;
+
+  if (settings.admin) {
+    tableHTML += `
+      <tr>
+        <td>Internet access</td>
+        <td><input type="checkbox" class="toggle" onclick="ftoggleInternetAccess()" ${settings.internetaccess ? "checked" : ""}></td>
+      </tr>`;
+  }
+
+  tableHTML += `</table>`;
+  container.innerHTML = tableHTML;
 }
-// Get the Body_content
+
+/**
+ * Haalt HTML op en plaatst deze in de accordeon.
+ * @param {HTMLElement} container - De doelcontainer
+ * @param {string} url - De bron
+ * @param {HTMLElement} header - De header om naar te scrollen na laden
+ */
+async function fFetchAndRenderData(container, url, header) {
+  const loader = document.querySelector(".loader");
+  if (loader) loader.classList.add("show");
+
+  let data = await fgetBodyContent(url);
+  container.innerHTML = data;
+
+  // Wacht op DOM rendering voor hoogtemeting en scrollen
+  setTimeout(() => {
+    fcalcBodyContent();
+    if (header) fscrollToItem(header);
+    if (loader) loader.classList.remove("show");
+  }, 150);
+}
+
+/**
+ * Fetch helper met foutafhandeling.
+ */
 async function fgetBodyContent(url) {
-    try {
-        let response = await fetch(url);
-        if (response.status === 200) {
-            return await response.text();
-        }
-        else {
-            return "<p>&#128073;&#32;Page is coming <b>SOON</b>&#32;&#128072;</p>";
-            //return response.url
-        }
-    }
-    catch (error) {
-        console.log("Error: ", error);
-    }
+  try {
+    let response = await fetch(url);
+    return response.ok
+      ? await response.text()
+      : "<p>👉 Page is coming <b>SOON</b> 👈</p>";
+  } catch (error) {
+    console.error("Fetch error:", error);
+    return "<p>Error loading content.</p>";
+  }
 }
+
+/**
+ * Zorgt dat het geopende element netjes in het zicht schuift.
+ */
+function fscrollToItem(element) {
+  if (!element) return;
+  element.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+}
+
+/**
+ * Berekent de maxHeight voor alle geopende niveaus in de boom.
+ */
 function fcalcBodyContent() {
-    var calcHeight = 0;
-    let acc_menu_tree_reverse = acc_menu_tree.reverse();
-    acc_menu_tree_reverse.forEach(sla => {
-        const acc_body = document.getElementById(sla).lastElementChild;
-        calcHeight += acc_body.scrollHeight;
-        acc_body.style.maxHeight = calcHeight + "px";
-    })
+  let calcHeight = 0;
+  let tree = fgetMenuTree().reverse();
+
+  tree.forEach((id) => {
+    const element = document.getElementById(id);
+    if (element && element.lastElementChild) {
+      const body = element.lastElementChild;
+      calcHeight += body.scrollHeight;
+      body.style.maxHeight = calcHeight + "px";
+    }
+  });
 }
+
+/**
+ * Bouwt een array van ID's van de actieve menu-paden.
+ */
 function fgetMenuTree() {
-    var acc_menu_tree = [];
-    const acc_active_headers = acc.querySelectorAll(".acc_item_header.active");
-    acc_active_headers.forEach(acc_Active_Item_Header => {
-        acc_menu_tree.push(acc_Active_Item_Header.parentElement.id);
-    });
-    return acc_menu_tree;
+  const tree = [];
+  const actives = acc.querySelectorAll(".acc_item_header.active");
+  actives.forEach((header) => {
+    if (header.parentElement.id) {
+      tree.push(header.parentElement.id);
+    }
+  });
+  return tree;
 }
