@@ -1,24 +1,42 @@
-let scrollPercentage = () => {
-    console.log("scroll");
-    let scrollProgress = document.querySelector(".scrolltotop");
-    let progressValue = document.getElementsByClassName("scrolltotop-progress")[0];
-    let pos = document.documentElement.scrollTop;
-    let calcHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    let scrollValue = Math.round(pos * 100 / calcHeight);
+/**
+ * Scrll.js - Beheert interne scroll-acties voor dynamische content.
+ * Focus op UI-elementen in plaats van de volledige pagina.
+ */
 
-    scrollProgress.classList.toggle("active", window.scrollY > 100);
+/**
+ * Zorgt dat het geopende accordeon-item netjes in beeld komt.
+ * Wordt aangeroepen vanuit acc.js nadat content is geladen.
+ * @param {HTMLElement} element - De header van het geopende item.
+ */
+function fscrollToItem(element) {
+  if (!element) return;
 
-    scrollProgress.addEventListener("click", () => {
-        document.documentElement.scrollTop = 0;
-    });
-    scrollProgress.style.background = `conic-gradient(#00ff0d ${scrollValue}%, #504f4f ${scrollValue}%)`;
-    //scrollProgress.style.background = `conic-gradient(#008fff ${scrollValue}%, #c0c0ff ${scrollValue}%)`;
-    progressValue.textContent = `${scrollValue}%`;
-    document.querySelector(".scrllindbar").style.width = scrollValue + "%";
+  // scrollIntoView zorgt dat het element naar de bovenkant van de viewport schuift.
+  // 'smooth' zorgt voor de animatie, 'start' lijnt de bovenkant uit.
+  element.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
 }
-function scrll_Init() {
-    console.log("scroller:");
 
+/**
+ * Update de voortgangsbalk op basis van een specifiek scroll-element (zoals .ui-content).
+ * @param {HTMLElement} container - De div die gescrold wordt.
+ */
+function fupdateInternalScrollProgress(container) {
+  const progressBar = document.querySelector(".scrllindbar");
+  if (!progressBar || !container) return;
+
+  const winScroll = container.scrollTop;
+  const height = container.scrollHeight - container.clientHeight;
+  const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+
+  progressBar.style.width = scrolled + "%";
 }
-//window.onscroll = scrollPercentage;
-//window.onload = scrollPercentage;
+
+/**
+ * Luistert naar scroll-events in de UI-container.
+ */
+document.querySelector(".ui-content")?.addEventListener("scroll", function () {
+  fupdateInternalScrollProgress(this);
+});
