@@ -1,3 +1,6 @@
+/**
+ * Main.js - Deel 1: Config & Init
+ */
 let websock;
 let WWWMenu = false;
 let settings = {
@@ -8,240 +11,112 @@ let settings = {
   internetaccess: false,
 };
 
-/* BullShit
-    let uicontent = document.querySelector('.ui-content');
-    let cssObj = window.getComputedStyle(uititle, null);
-    let cssStyle = getComputedStyle(document.documentElement);
-    let company = "Technical Grow Xperience";
-    let company = "Advanced Grow Xperience";
-    let company = "Technical Grow Solutions";
-    let company = "Advanced Grow Devices";
-
-    url_Github = "https://raw.githubusercontent.com/Technical-Grow-Solutions";
-
-    remake toggle slider: https://www.youtube.com/watch?v=CDldkBcrGkA
-
-    document.addEventListener("visibilitychange", () => {
-      if (document.visibilityState === "visible") {
-
-      } else {
-
-      }
-    });
-
-    <span style="transform: translate(-150px, -50px) rotate(-180deg) scale(3); animation: 0.5s ease 0.05s 1 reverse none running revolveScale;">T</span>
-    <span style="transform: translate(-150px, -50px) rotate(-180deg) scale(3); animation: 0.5s ease 0.05s 1 normal forwards running revolveScale;">C</span>
-    spanElement.style.animation = 'revolveScale 0.5s ease forwards';
-    spanElement.style.animation = 'revolveScale 0.5s ease';
-    spanElement.style.animationDirection = "reverse";
-
-    window.addEventListener('DOMActivate', fprocessDisplayJson(jsonDoc))
-    window.addEventListener('pageshow', fprocessDisplayJson(jsonDoc));
-*/
-function myWindow() {
-  console.log("View innerheight: " + window.innerHeight);
-  console.log("View outerheight: " + window.outerHeight);
-  console.log("Docu Element: " + document.querySelector("body").clientHeight);
-}
-
 let jsonDoc1 = {
   id: "display",
   settings: [
-    {
-      admin: true,
-    },
-    {
-      awesome: false,
-    },
-    {
-      fullscreen: false,
-    },
-    {
-      lefthand: false,
-    },
-    {
-      internetaccess: false,
-    },
+    { admin: true },
+    { awesome: false },
+    { fullscreen: false },
+    { lefthand: false },
+    { internetaccess: false },
   ],
-  inits: [
-    {
-      company: "Advanced Grow Xperiences",
-    },
-    {
-      author: "M.F. Saathof",
-    },
-  ],
+  inits: [{ company: "Advanced Grow Xperiences" }, { author: "M.F. Saathof" }],
   items: [
-    {
-      item: "bgimage",
-      props: [
-        {
-          active: true,
-        },
-        {
-          show: false,
-        },
-      ],
-    },
-    {
-      item: "chapter",
-      props: [{ active: true }, { show: true }],
-    },
-    {
-      item: "clock",
-      props: [{ active: true }, { show: false }],
-    },
-    {
-      item: "footer",
-      props: [{ active: true }, { show: true }],
-    },
-    {
-      item: "header",
-      props: [{ active: true }, { show: true }],
-    },
-    {
-      item: "loader",
-      props: [{ active: true }, { show: false }],
-    },
+    { item: "bgimage", props: [{ active: true }, { show: false }] },
+    { item: "chapter", props: [{ active: true }, { show: true }] },
+    { item: "clock", props: [{ active: true }, { show: false }] },
+    { item: "footer", props: [{ active: true }, { show: true }] },
+    { item: "header", props: [{ active: true }, { show: true }] },
+    { item: "loader", props: [{ active: true }, { show: false }] },
     {
       item: "menu",
       props: [{ active: true }, { show: true }],
       items: [
-        {
-          item: "rbut",
-          id: "Profile",
-          onclick: "faddUIContent('/data/profile.json', 'profile', false)",
-          img: "/images/profile.png",
-          props: [{ show: true }],
-        },
-        {
-          item: "rbut",
-          id: "Device",
-          onclick:
-            "faddUIContent('/devices/clone-booster/1.0/data/device-min.json', 'device')",
-          img: "/images/device.png",
-          props: [{ show: true }],
-        },
-        {
-          item: "rbut",
-          id: "WWW",
-          onclick: "ftoggleWWWMenu()",
-          img: "/images/www.png",
-          props: [{ show: false }],
-        },
-        {
-          item: "rbut",
-          id: "scrlltotop",
-          onclick: "",
-          img: "",
-          props: [{ show: false }],
-        },
-        {
-          item: "rbut",
-          id: "Training",
-          onclick:
-            "faddUIContent('/training/data/training-min.json', 'training',false)",
-          img: "/images/training.png",
-          props: [{ show: false }],
-        },
-        {
-          item: "rbut",
-          id: "Store",
-          onclick: "faddUIContent('/store/index.html', 'store', false)",
-          img: "/images/store.png",
-          props: [{ show: false }],
-        },
-        {
-          item: "rbut",
-          id: "Catalog",
-          onclick:
-            "faddUIContent('/catalog/data/catalog-min.json', 'catalog', false)",
-          img: "/images/catalog.png",
-          props: [{ show: false }],
-        },
-        {
-          item: "rbut",
-          id: "Forum",
-          onclick: "faddUIContent('/forum/html/index.html', 'forum', false)",
-          img: "/images/forum.png",
-          props: [{ show: false }],
-        },
+        { id: "Profile", props: [{ show: true }] },
+        { id: "Device", props: [{ show: true }] },
+        { id: "WWW", props: [{ show: false }] },
+        { id: "Training", props: [{ show: false }] },
+        { id: "Store", props: [{ show: false }] },
+        { id: "Catalog", props: [{ show: false }] },
+        { id: "Forum", props: [{ show: false }] },
       ],
     },
-    {
-      item: "scrllind",
-      props: [{ active: true }, { show: true }],
-    },
-    {
-      item: "snackbar",
-      props: [{ active: true }, { show: false }],
-    },
-    {
-      item: "ui",
-      props: [{ active: true }, { show: true }],
-    },
+    { item: "scrllind", props: [{ active: true }, { show: true }] },
+    { item: "snackbar", props: [{ active: true }, { show: false }] },
+    { item: "ui", props: [{ active: true }, { show: true }] },
   ],
 };
 
-/* Events*/
+// Luister naar het 'load' event volgens de [MDN Window: load event](https://developer.mozilla.org) regels
 window.addEventListener("load", Init);
 
-/*login */
-function fcheckFormInput() {}
-
-/* Start */
+/**
+ * Start de applicatie.
+ * @param {Event} event - Het load event van de browser.
+ */
 function Init(event) {
-  /*temp*/
-  console.log("Init");
-  /* delivery by server*/
+  console.log("Init gestart door event:", event.type);
+
   fprocessDisplayJson(jsonDoc1);
-  clock_Init();
+
+  if (typeof clock_Init === "function") {
+    clock_Init();
+  }
+
   setInterval(fisBrowserOnline, 3000);
-  /* myWindow();*/
   ws_Init();
 }
-function fprocessSensorJson(jsonDoc) {}
+
+/**
+ * Main.js - Deel 2: Verwerking & Logica
+ */
+function fprocessSensorJson(jsonDoc) {
+  console.log("Sensor Update:", jsonDoc);
+  // Logica voor sensoren toevoegen
+}
 function fprocessDisplayJson(jsonDoc) {
-  /* settings */
-  console.log("jsonDoc");
-  console.log(jsonDoc);
-  // 1. Verwerk Settings (Update het globale settings object)
+  // 1. Settings Update
   if (jsonDoc.settings) {
     jsonDoc.settings.forEach((item) => {
-      // Haal de key en value op (bijv. "admin" en true)
       const [key, value] = Object.entries(item)[0];
-      if (settings.hasOwnProperty(key)) {
-        settings[key] = value;
-      }
+      if (settings.hasOwnProperty(key)) settings[key] = value;
     });
   }
 
-  // 2. Verwerk Items (UI elementen)
+  // 2. Inits (Footer/Logo)
+  if (jsonDoc.inits) {
+    jsonDoc.inits.forEach((init) => {
+      if (init.company) {
+        document.getElementById("footer-company").textContent = init.company;
+        finitHeader(init.company);
+      }
+      if (init.author)
+        document.getElementById("footer-author-alias").textContent =
+          init.author;
+    });
+  }
+
+  // 3. UI Items Toggling via classList.toggle
   if (jsonDoc.items) {
     jsonDoc.items.forEach((jsonItem) => {
       const element = document.querySelector("." + jsonItem.item);
       if (!element) return;
 
-      // Verwerk Props (active, show, awesome, ani)
       if (jsonItem.props) {
         jsonItem.props.forEach((prop) => {
           const [key, value] = Object.entries(prop)[0];
-          // Gebruik toggle met de boolean waarde
-          if (["active", "show", "awesome", "ani"].includes(key)) {
-            element.classList.toggle(key, value);
-          }
+          if (["active", "show", "awesome", "ani"].includes(key))
+            element.classList.toggle(key, !!value);
         });
       }
 
-      // Verwerk Sub-items (zoals rbut in menu)
       if (jsonItem.items) {
         jsonItem.items.forEach((subItem) => {
           const subElement = document.getElementById(subItem.id);
           if (subElement && subItem.props) {
-            subItem.props.forEach((prop) => {
-              if (prop.hasOwnProperty("show")) {
-                subElement.classList.toggle("show", prop.show);
-              }
+            subItem.props.forEach((p) => {
+              if (p.hasOwnProperty("show"))
+                subElement.classList.toggle("show", !!p.show);
             });
           }
         });
@@ -249,48 +124,53 @@ function fprocessDisplayJson(jsonDoc) {
     });
   }
 }
-/* inits */
-// 3. Verwerk Inits (voor footer/bedrijfsnaam)
-if (jsonDoc.inits) {
-  jsonDoc.inits.forEach((init) => {
-    if (init.company)
-      document.getElementById("footer-company").textContent = init.company;
-    if (init.author)
-      document.getElementById("footer-author-alias").textContent = init.author;
-  });
-}
-
 /*Header logo*/
+/**
+ * Bouwt de interactieve logo-lijst op in de header en update de bedrijfsnaam-afkorting in de footer.
+ * @param {string} company - De volledige bedrijfsnaam (bijv. "Advanced Grow Xperiences").
+ */
 function finitHeader(company) {
-  let a = document.getElementById("logo-list");
-  /* first remove all. */
-  while (a.firstChild) {
-    a.firstChild.remove();
-  }
-  /* First letter, no class*/
+  const a = document.getElementById("logo-list");
+  if (!a) return;
+
+  // Verwijder alle bestaande lijst-items (efficiënter dan een while-loop)
+  a.innerHTML = "";
+
+  // De eerste letter van de bedrijfsnaam (krijgt geen speciale class)
   let li = document.createElement("li");
-  li.innerHTML = company[0];
+  li.textContent = company[0];
   a.appendChild(li);
 
-  let abbrev;
-  abbrev = company[0];
+  // Start de afkorting met de eerste letter
+  let abbrev = company[0];
+  let letterClass = "ghost";
 
-  let letter = "ghost";
+  // Loop door de rest van de letters
   for (let i = 1; i < company.length; i++) {
-    if (company[i] == " ") {
-      letter = "spaced";
-      abbrev += company[i + 1];
+    if (company[i] === " ") {
+      letterClass = "spaced";
+      // Voeg de letter na de spatie toe aan de afkorting
+      if (company[i + 1]) {
+        abbrev += company[i + 1];
+      }
+      // We voegen de spatie toe als een apart li-element (optioneel, afhankelijk van je CSS)
+      // Maar volgens jouw logica springen we direct naar de volgende letter:
       i++;
     } else {
-      letter = "ghost";
+      letterClass = "ghost";
     }
 
     li = document.createElement("li");
-    li.innerHTML = company[i];
+    li.textContent = company[i];
+    li.className = letterClass;
     a.appendChild(li);
-    li.setAttribute("class", letter);
   }
-  document.getElementById("footer-company").innerText = abbrev;
+
+  // Update de footer met de gegenereerde afkorting (bijv. "AGX")
+  const footerComp = document.getElementById("footer-company");
+  if (footerComp) {
+    footerComp.innerText = abbrev;
+  }
 }
 function fexpandLogo() {
   document.getElementById("logo").classList.remove("hidden");
@@ -300,303 +180,289 @@ function fcollapseLogo() {
   document.getElementById("logo").classList.add("hidden");
 }
 /*Chapter*/
+/**
+ * Verandert de hoofdstuk-titel met animatie-effecten.
+ * @param {string} title - De nieuwe titel voor het hoofdstuk.
+ */
 function fchangeChapter(title) {
-  /*Get the element*/
-  let Chapter = document.querySelector(".chapter");
-  let Span;
-  /*if (settings.awesome) {*/
-  /*in reverse*/
-  /*Chapter.classList.add("show");*/
-  /*}*/
+  const chapter = document.querySelector(".chapter");
+  if (!chapter) return;
 
-  /*Clear all the previous childeren and props in html and in the css*/
-  /*Chapter.classList.remove("show");*/
-  if (!Chapter.childElementCount == 0) {
-    fAnimateText(Chapter, true);
+  // Als er al letters in staan, voer de 'uitwaai' animatie uit
+  if (chapter.childElementCount > 0) {
+    // Start de animatie om de oude tekst te laten verdwijnen
+    fAnimateText(chapter, true);
 
-    /*setTimeout(() => {*/
-    fereaseAnimation(Chapter);
-    fcreateAnimation(Chapter, title);
-    /*}, 1000);*/
+    // Wis de oude elementen en bouw de nieuwe animatie op
+    // We gebruiken een kleine vertraging als de animatie tijd nodig heeft
+    fereaseAnimation(chapter);
+    fcreateAnimation(chapter, title);
   } else {
-    fcreateAnimation(Chapter, title);
+    // Direct opbouwen als de container nog leeg is
+    fcreateAnimation(chapter, title);
   }
 }
-function fereaseAnimation(divElement) {
-  while (divElement.firstChild) {
-    divElement.removeChild(divElement.firstChild);
-  }
+/**
+ * Hulpmiddel om de container snel leeg te maken voor een nieuwe animatie.
+ */
+function fereaseAnimation(element) {
+  // replaceChildren() zonder argumenten is de snelste manier om een element te legen
+  // Zie [MDN replaceChildren](https://developer.mozilla.org)
+  element.replaceChildren();
+  element.classList.remove("show");
 }
+/**
+ * Bouwt de span-elementen op voor de hoofdstuk-animatie.
+ * @param {HTMLElement} divElement - De .chapter container.
+ * @param {string} title - De tekst die geanimeerd moet worden.
+ */
 function fcreateAnimation(divElement, title) {
+  // Gebruik een loop om elk teken te verwerken
   for (let i = 0; i < title.length; i++) {
-    if (title.slice(i, i + 1) == " ") {
-      Span.insertAdjacentText("afterend", "&nbsp;");
+    const char = title[i];
+    const span = document.createElement("span");
+
+    if (char === " ") {
+      // Gebruik een non-breaking space voor spaties tussen woorden
+      span.innerHTML = "&nbsp;";
+      span.className = "spaced";
     } else {
-      Span = document.createElement("span");
-      Span.innerHTML = title.toUpperCase().slice(i, i + 1);
-      divElement.appendChild(Span);
+      // Zet tekst om naar hoofdletters zoals in je origineel
+      span.textContent = char.toUpperCase();
     }
+
+    divElement.appendChild(span);
   }
+  // Start de animatie na het opbouwen
   fAnimateText(divElement);
 }
+/**
+ * Voert de revolveScale animatie uit op de span-elementen.
+ * @param {HTMLElement} Element - De container met spans.
+ * @param {boolean} reverse - Of de animatie achteruit moet spelen (bij wissen).
+ */
 function fAnimateText(Element, reverse = false) {
-  let spanElements = Element.querySelectorAll("span");
-  let tim = 0;
-  spanElements.forEach((spanElement) => {
+  const spanElements = Element.querySelectorAll("span");
+  let delay = 0;
+
+  spanElements.forEach((span) => {
     if (settings.awesome) {
-      tim = tim + 0.05;
-      spanElement.style.transform =
+      delay += 0.05;
+
+      // Voorbereiden van de startpositie voor Awesome mode
+      span.style.transform =
         "translate(-150px, -50px) rotate(-180deg) scale(3)";
-      /*<span style="animation: 0.4s ease 0.35s 1 normal forwards running revolveScale;">G</span>*/
-      if (reverse) {
-        spanElement.style.animation = "revolveScale .3s reverse";
-        /*spanElement.style.animationDirection = "reverse";*/
-      } else {
-        spanElement.style.animation = "revolveScale .3s forwards";
-      }
-      spanElement.style.animationDelay = tim + "s";
+
+      // Animatie instellen via de [Web Animations API](https://developer.mozilla.org) principes
+      span.style.animation = `revolveScale 0.3s ${reverse ? "reverse" : "forwards"}`;
+      span.style.animationDelay = `${delay}s`;
     } else {
-      spanElement.style.opacity = 1;
+      // Simpele fallback voor normale mode
+      span.style.opacity = "1";
     }
   });
 }
+
 /*Menu*/
+/**
+ * Beheert de zichtbaarheid van het menu en de individuele knoppen.
+ * Gebruikt ftoggleMenuButton om rekening te houden met Awesome mode.
+ */
 function fshowMenuButton(butt = -1, show = false, showmenu = true) {
-  /*console.log("fshowMenuButton: Start");*/
-  let menu = document.querySelector(".menu");
-  let buttons = menu.querySelectorAll(".rbut");
+  const menu = document.querySelector(".menu");
+  const buttons = document.querySelectorAll(".menu .rbut");
+
+  if (!menu) return;
 
   if (showmenu) {
-    /*menu self*/
-    /*console.log("fshowMenuButton: Show menu self");*/
-    if (!menu.classList.contains("show")) {
-      menu.classList.add("show");
-    }
+    // Menu zelf direct tonen
+    menu.classList.add("show");
   } else {
-    console.log("fshowMenuButton: weet nog niet");
+    // Verberg alle knoppen via de slimme toggle (houdt rekening met ani/show)
     buttons.forEach((button) => {
-      if (show) {
-        if (!button.classList.contains("show")) {
-          button.classList.add("show");
-        }
-      } else {
-        if (button.classList.contains("show")) {
-          button.classList.remove("show");
-        }
-      }
+      ftoggleMenuButton(button, show);
     });
+
+    // Wacht 2.5s voordat het menu-container zelf verdwijnt
     setTimeout(() => {
-      if (menu.classList.contains("show")) {
-        menu.classList.remove("show");
-      }
+      menu.classList.remove("show");
     }, 2500);
   }
 
-  if (butt == -1) {
-    /*all the buttons*/
+  // Specifieke knop-afhandeling op basis van index
+  if (butt === -1) {
+    // Alle knoppen verwerken
     buttons.forEach((button) => {
       ftoggleMenuButton(button, show);
     });
   } else {
-    /*one button*/
-    ftoggleMenuButton(buttons[butt], show);
+    // Eén specifieke knop op index verwerken (bijv. index 2 voor WWW)
+    if (buttons[butt]) {
+      ftoggleMenuButton(buttons[butt], show);
+    }
+  }
+}
+/**
+ * Toggelt de zichtbaarheid van een menu-element.
+ * Kiest tussen 'ani' (Awesome mode) of 'show' (normaal).
+ * Schakelt de zichtbaarheid van een menu-knop.
+ * @param {HTMLElement} button - De .rbut knop.
+ */
+function ftoggleMenuButton(button, show) {
+  if (!button) return;
+
+  if (settings.awesome) {
+    // In Awesome mode gebruiken we de 'ani' class voor animaties
+    button.classList.toggle("ani", show);
+    // Zorg dat de normale 'show' class weg is/blijft in awesome mode
+    button.classList.remove("show");
+  } else {
+    // In normale mode gebruiken we de standaard 'show' class
+    button.classList.toggle("show", show);
+    // Zorg dat de 'ani' class weg is/blijft in normale mode
+    button.classList.remove("ani");
   }
 }
 
-function ftoggleMenuButton(element, show) {
-  if (show) {
-    if (settings.awesome) {
-      if (!element.classList.contains("ani")) {
-        element.classList.add("ani");
-      }
-    } else {
-      if (!element.classList.contains("show")) {
-        element.classList.add("show");
-      }
-    }
-  } else {
-    if (settings.awesome) {
-      if (element.classList.contains("ani")) {
-        element.classList.remove("ani");
-      }
-    } else {
-      if (element.classList.contains("show")) {
-        element.classList.remove("show");
-      }
-    }
-  }
-}
 /*UI*/
+/**
+ * Laadt UI-content (HTML of Accordion JSON) en beheert de overgangen.
+ */
 function faddUIContent(url, chapter, local = true) {
   const ui = document.querySelector(".ui");
-  console.log("faddUIContent: ", url);
-  document.querySelector(".loader").classList.add("show");
-  if (settings.awesome) {
-    if (ui.classList.contains("awesome")) {
-      if (ui.classList.contains("ani")) {
-        ui.classList.remove("ani");
-      }
-      /*setTimeout(() => {*/
-      fremoveUIContent();
-      if (local) {
-        if (WWWMenu) {
-          ftoggleWWWMenu();
-        }
-      }
-      fchangeChapter(chapter);
-      setTimeout(() => {
-        fgetUIData(url);
-        ui.classList.add("ani");
-        /*}, 300);*/
-      }, 200);
-    }
-  } else {
-    if (ui.classList.contains("show")) {
-      fremoveUIContent();
-      if (local) {
-        if (WWWMenu) {
-          ftoggleWWWMenu();
-        }
-      }
-    }
+  const loader = document.querySelector(".loader");
 
-    fchangeChapter(chapter);
-    fgetUIData(url);
-    ui.classList.add("show");
+  if (loader) loader.classList.add("show");
+
+  // Awesome of Normale mode afhandeling
+  const activeClass = settings.awesome ? "ani" : "show";
+
+  if (ui.classList.contains(activeClass)) {
+    ui.classList.remove(activeClass);
   }
+
+  fremoveUIContent();
+
+  // Indien lokaal en WWWMenu open is, sluit het internetmenu
+  if (local && WWWMenu) {
+    ftoggleWWWMenu();
+  }
+
+  fchangeChapter(chapter);
+
+  // Timing aangepast voor soepele ESP32 transitie
+  setTimeout(() => {
+    fgetUIData(url);
+    ui.classList.add(activeClass);
+  }, 200);
 }
-/*Remove UI-content*/
+
+/**
+ * Maakt de UI-container leeg.
+ */
 function fremoveUIContent() {
   const ui_content = document.querySelector(".ui-content");
-  while (ui_content.firstChild) {
-    ui_content.removeChild(ui_content.firstChild);
+  if (ui_content) {
+    // replaceChildren is de snelste methode voor ESP32/Browser
+    ui_content.replaceChildren();
   }
 }
-/*UI-Fetch data*/
-async function fgetUIData(bla) {
-  const response = await fetch(bla);
+/**
+ * Haalt data op van de server en bepaalt of het HTML of JSON (accordeon) is.
+ */
+async function fgetUIData(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) return;
 
-  if (bla.includes(".json")) {
-    const jsonDoc = await response.json();
-    fprocessUIJson(jsonDoc);
-    document.querySelector(".loader").classList.remove("show");
-  } else if (bla.includes(".html")) {
-    const htmlstr = await response.text();
-    let ui_content = document.querySelector(".ui-content");
+    if (url.includes(".json")) {
+      const jsonDoc = await response.json();
+      fprocessUIJson(jsonDoc);
+    } else if (url.includes(".html")) {
+      const htmlstr = await response.text();
+      const ui_content = document.querySelector(".ui-content");
 
-    /*Nieuw*/
-    let div = document.createElement("div");
-    div.setAttribute("class", "content");
-    div.setAttribute("translate", "yes");
-    ui_content.appendChild(div);
-    div.innerHTML = htmlstr;
-    /*End ui_content.innerHTML = htmlstr;*/
+      const div = document.createElement("div");
+      div.className = "content";
+      div.setAttribute("translate", "yes");
+      div.innerHTML = htmlstr;
+      ui_content.appendChild(div);
+    }
+  } catch (err) {
+    console.error("Fetch error:", err);
+  } finally {
     document.querySelector(".loader").classList.remove("show");
   }
-  /*document.querySelector('.scrllind').classList.remove('show');*/
 }
-/*UI-Acc*/
+/**
+ * Verwerkt Accordion JSON en bouwt de boomstructuur.
+ */
 function fprocessUIJson(jsonDoc) {
-  /*Filling the content*/
-  let item_body_content;
-  let subitem_body_content;
-  let subsubitem_body_content;
-  let subsubsubitem_body_content;
-  let uicontent = document.querySelector(".ui-content");
+  const uicontent = document.querySelector(".ui-content");
+  if (jsonDoc.type === "accordion") {
+    const acc = document.createElement("div");
+    acc.className = jsonDoc.type;
+    acc.id = jsonDoc.id;
 
-  let jsonType = jsonDoc["type"];
-  switch (jsonType) {
-    case "accordion":
-      let acc = document.createElement("div");
-      acc.setAttribute("class", jsonType);
-      acc.setAttribute("id", jsonDoc["id"]);
-      uicontent.appendChild(acc);
+    if (jsonDoc.translate === false) acc.setAttribute("translate", "no");
+    uicontent.appendChild(acc);
 
-      if (jsonDoc.hasOwnProperty("translate")) {
-        if (!jsonDoc["translate"]) {
-          acc.setAttribute("translate", "no");
-        }
-      }
-      /* Items */
-      jsonDoc["items"].forEach((jsonItem) => {
-        /* if exampleObj.hasOwnProperty('name') */
-        item_body_content = fcreateACCItem(acc, jsonItem);
-        if (jsonItem.hasOwnProperty("items")) {
-          /* SubItems  */
-          jsonItem["items"].forEach((jsonSubItem) => {
-            subitem_body_content = fcreateACCItem(
-              item_body_content,
-              jsonSubItem,
-            );
-            if (jsonSubItem.hasOwnProperty("items")) {
-              /* SubSubItem  */
-              jsonSubItem["items"].forEach((jsonSubSubItem) => {
-                subsubitem_body_content = fcreateACCItem(
-                  subitem_body_content,
-                  jsonSubSubItem,
-                );
-                if (jsonSubSubItem.hasOwnProperty("items")) {
-                  /* SubSubSubItem  */
-                  jsonSubSubItem["items"].forEach((jsonSubSubSubItem) => {
-                    subsubsubitem_body_content = fcreateACCItem(
-                      subsubitem_body_content,
-                      jsonSubSubSubItem,
-                    );
-                  });
-                }
-              });
-            } else {
-              /*console.log("jsonSubItem: ", jsonSubItem); */
-            }
-          });
-        } else {
-          /* fetch data???
-                    console.log("Item has only one SubItem");
-                    console.log("jsonSubItem: ", jsonSubItem); */
-        }
+    // Recursieve functie om diepe nesting aan te kunnen zonder 100 IF-statements
+    const buildItems = (parent, items) => {
+      items.forEach((jsonItem) => {
+        const bodyContent = fcreateACCItem(parent, jsonItem);
+        if (jsonItem.items) buildItems(bodyContent, jsonItem.items);
       });
-      acc_Init();
-      break;
+    };
+
+    buildItems(acc, jsonDoc.items);
+    if (typeof acc_Init === "function") acc_Init();
   }
 }
+/**
+ * Creëert de individuele DOM-elementen voor een accordeon-item.
+ */
 function fcreateACCItem(addToBodyContent, json_item) {
-  let acc_item;
-  let acc_item_header;
-  let acc_item_body;
-  let acc_item_body_content;
-  let acc_name;
-  acc_name = json_item["item"];
+  const acc_name = json_item.item;
 
-  acc_item = document.createElement("div");
-  acc_item.setAttribute("class", "acc_item");
-  acc_item.setAttribute("id", acc_name);
+  // Container
+  const acc_item = document.createElement("div");
+  acc_item.className = "acc_item";
+  acc_item.id = acc_name;
   addToBodyContent.appendChild(acc_item);
 
-  acc_item_header = document.createElement("div");
-  acc_item_header.setAttribute("class", "acc_item_header");
+  // Header
+  const acc_item_header = document.createElement("div");
+  acc_item_header.className = "acc_item_header";
 
+  // Vertaling instellen
   if (json_item.hasOwnProperty("translate")) {
-    if (json_item["translate"]) {
-      /*console.log("translate: ", (json_item["translate"]));*/
-      acc_item_header.setAttribute("translate", "yes");
-    } else {
-      acc_item_header.setAttribute("translate", "no");
-    }
+    acc_item_header.setAttribute(
+      "translate",
+      json_item.translate ? "yes" : "no",
+    );
   }
 
+  // Naam met hoofdletter (bijv. 'profile' -> 'Profile')
   acc_item_header.innerText =
     acc_name.charAt(0).toUpperCase() + acc_name.slice(1);
   acc_item.appendChild(acc_item_header);
 
-  acc_item_body = document.createElement("div");
-  acc_item_body.setAttribute("class", "acc_item_body");
-  acc_item_body_content = document.createElement("div");
-  acc_item_body_content.setAttribute("class", "acc_item_body_content");
+  // Body & Content Wrapper
+  const acc_item_body = document.createElement("div");
+  acc_item_body.className = "acc_item_body";
+
+  const acc_item_body_content = document.createElement("div");
+  acc_item_body_content.className = "acc_item_body_content";
+
   acc_item_body.appendChild(acc_item_body_content);
   acc_item.appendChild(acc_item_body);
+
   return acc_item_body_content;
 }
-/*LogIn*/
+
+/*login */
+function fcheckFormInput() {}
 function ftoggleShowPsw() {
   var x = document.getElementById("PSWInput");
   if (x.type === "password") {
@@ -605,260 +471,275 @@ function ftoggleShowPsw() {
     x.type = "password";
   }
 }
+
 /*WebSocket functions*/
+/**
+ * WebSocket Routering en Connectiviteitsbeheer.
+ * Geoptimaliseerd voor een lichte voetafdruk op de ESP32.
+ */
 function ws_Init() {
-  if ("WebSocket" in window) {
-    /* let protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';     */
-    /* Let us open a web socket
-        console.log('Trying to open a WebSocket connection...'); */
-    websock = new WebSocket("ws://" + window.location.hostname + ":81/ws");
-    websock.onopen = ws_Open;
-    websock.onclose = ws_Close;
-    websock.onmessage = ws_Message;
-    websock.onerror = ws_Error;
-  } else {
-    /*The browser doesn't support WebSocket */
+  if (!("WebSocket" in window)) {
+    // Vroege uitgang als de browser geen WebSockets ondersteunt
     alert("WebSocket NOT supported by your Browser!");
+    return;
   }
+
+  // Verbindt met de ESP32 op poort 81
+  websock = new WebSocket("ws://" + window.location.hostname + ":81/ws");
+
+  // Koppel de event handlers
+  websock.onopen = ws_Open;
+  websock.onclose = ws_Close;
+  websock.onmessage = ws_Message;
+  websock.onerror = ws_Error;
 }
+
 function ws_Open(event) {
-  console.log("Connection opened");
+  console.log("WebSocket Verbinding geopend.");
+  // Hier kun je een status-indicator in de UI bijwerken
 }
+
 function ws_Message(event) {
-  /*console.log(`Received a notification from ${event.origin}`);*/
-  console.log(event.data);
+  try {
+    const jsonDoc = JSON.parse(event.data);
+    const jsonID = jsonDoc["id"];
 
-  let jsonDoc = JSON.parse(event.data);
-  let jsonID = jsonDoc["id"];
-  switch (jsonDoc["id"]) {
-    case "display":
+    // Efficiënte routering op basis van de 'id' property
+    if (jsonID === "display") {
       fprocessDisplayJson(jsonDoc);
-      break;
-    case "sensor":
+    } else if (jsonID === "sensor") {
       fprocessSensorJson(jsonDoc);
-      break;
-    default:
+    }
+    // Eventuele 'snack' of andere IDs kunnen hieronder toegevoegd worden
+  } catch (error) {
+    console.error("Fout bij JSON parsen of verwerken van WS bericht:", error);
   }
-
-  /*if (jsonID == "snack") { ws_rx_Snackbar(); }*/
 }
+
 function ws_Close(event) {
   if (event.wasClean) {
-    /*alert(`[close] Connection closed cleanly, code=${evt.code} reason=${evt.reason}`);*/
-    console.log("Connection closed");
+    console.log(`Verbinding netjes gesloten, code=${event.code}`);
   } else {
-    /* e.g. server process killed or network down
-                  event.code is usually 1006 in this case
-                  alert('[close] Connection died');*/
+    // Verbinding verloren (bijv. server herstart)
+    console.warn("Verbinding verbroken. Herstart poging over 2 seconden...");
+    // Probeer opnieuw te verbinden
+    setTimeout(ws_Init, 2000);
   }
-  websock.close();
+  // websock.close() is niet nodig hier, de verbinding is al verbroken
 }
+
 function ws_Error(error) {
-  /*alert(`[error] ${error.message}`);*/
+  console.error(`WebSocket Error: ${error.message}`);
 }
+/*Elements
+/**
+ * Ontvangt en toont snackbar-berichten van de ESP32.
+ * @param {Object} jsonDoc - De JSON met message, color en timems.
+ */
+function ws_rx_Snackbar(jsonDoc) {
+  const element = document.getElementById("snackbar");
+  if (!element) return;
 
-function ws_rx_Snackbar() {
-  console.log("ws_rx_Snackbar:");
-  element = document.getElementById("snackbar");
-  element.innerText = jsonDoc["message"];
-  let e_Color = jsonDoc["color"];
+  element.textContent = jsonDoc.message;
 
-  switch (e_Color) {
-    case 1:
-      element.style.backgroundColor = getComputedStyle(
-        element,
-      ).getPropertyValue("--color-ui-background");
-      break;
-    case 2:
-      element.style.backgroundColor = "rgba(255, 0, 0, 0.674)";
-      break;
-    case 3:
-      element.style.backgroundColor = "rgba(251, 255, 0, 0.966)";
-      break;
-    default:
-  }
-  element.className = "show";
-  setTimeout(function () {
-    element.className = element.className.replace("show", "");
-  }, jsonDoc["timems"]);
+  // Kleurenbeheer op basis van type (1: info/UI, 2: error, 3: warning)
+  const colors = {
+    1: "var(--color-ui-background)", // Gebruik de CSS variabele direct
+    2: "rgba(255, 0, 0, 0.67)",
+    3: "rgba(251, 255, 0, 0.97)",
+  };
+
+  element.style.backgroundColor = colors[jsonDoc.color] || colors[1];
+  element.classList.add("show");
+
+  // Verberg de snackbar na de opgegeven tijd (uit de JSON)
+  setTimeout(() => {
+    element.classList.remove("show");
+  }, jsonDoc.timems || 3000);
 }
-/*WebSocket sending Json data to server*/
+/**
+ * Verstuurt tekst naar de ESP32 via de WebSocket.
+ */
 function ws_tx_Text() {
-  websock.send(document.getElementById("txBar").value);
-  document.getElementById("txBar").value = "";
-}
-function ws_tx_Brightness() {
-  websock.send("#" + document.getElementById("brightness").value);
-}
-/*Miscellaneous methods*/
-function ftoggleWWWMenu() {
-  if (WWWMenu) {
-    WWWMenu = false;
-    fshowMenuButton(4, false); /*training*/
-    fshowMenuButton(5, false); /*device*/
-    fshowMenuButton(6, false); /*store*/
-    fshowMenuButton(7, false); /*store*/
-  } else {
-    WWWMenu = true;
-    fshowMenuButton(4, true); /*training*/
-    fshowMenuButton(5, true); /*device*/
-    fshowMenuButton(6, true); /*store*/
-    fshowMenuButton(7, true); /*store*/
+  const txBar = document.getElementById("txBar");
+  if (txBar && websock.readyState === WebSocket.OPEN) {
+    websock.send(txBar.value);
+    txBar.value = ""; // Veld leegmaken na verzenden
   }
+}
+/**
+ * Verstuurt de helderheidswaarde naar de ESP32.
+ */
+function ws_tx_Brightness() {
+  const brightness = document.getElementById("brightness");
+  if (brightness && websock.readyState === WebSocket.OPEN) {
+    // Verstuurt met '#' prefix zoals in je originele logica
+    websock.send("#" + brightness.value);
+  }
+}
+
+/*Miscellaneous methods*/
+/**
+ * Toggelt het WWW-menu en de bijbehorende knoppen (Training, Store, Catalog, Forum).
+ */
+function ftoggleWWWMenu() {
+  // Toggle de boolean state
+  WWWMenu = !WWWMenu;
+
+  // De knoppen die bij het WWW-menu horen (index 4 t/m 7)
+  const wwwButtons = [4, 5, 6, 7];
+
+  // Update alle knoppen in één keer
+  wwwButtons.forEach((index) => {
+    fshowMenuButton(index, WWWMenu);
+  });
+
+  // Schoon de UI op en reset het hoofdstuk
   fremoveUIContent();
   fchangeChapter("");
 }
 /*Fullscreen mode*/
+/**
+ * Checkt of de browser momenteel in Fullscreen modus staat.
+ */
 function fisFullScreen() {
-  return document.fullscreenElement;
+  return !!document.fullscreenElement;
 }
+/**
+ * Schakelt Fullscreen in of uit op basis van settings.
+ */
 function fFullScreen() {
-  let elUI = document.getElementsByClassName(".ui");
+  const elem = document.documentElement;
+  const clock = document.querySelector(".clock");
+
   if (settings.fullscreen) {
-    let elem = document.documentElement;
+    // Gebruik de moderne standaard methode van [MDN](https://developer.mozilla.org)
     if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) {
-      /* Firefox */
-      elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) {
-      /* Chrome, Safari & Opera */
-      elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) {
-      /* IE/Edge */
-      elem = window.top.document.body; /*To break out of frame in IE*/
-      elem.msRequestFullscreen();
+      elem.requestFullscreen().catch((err) => console.error(err));
     }
-    elUI.height = elUI.height - 50;
-    document.querySelector(".clock").classList.add("show");
+    if (clock) clock.classList.add("show");
   } else {
     if (document.exitFullscreen) {
       document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
-      window.top.document.msExitFullscreen();
     }
-    elUI.height = elUI.height + 50;
-    document.querySelector(".clock").classList.remove("show");
+    if (clock) clock.classList.remove("show");
   }
 }
 function ftoggleFullScreen() {
-  settings.fullscreen = settings.fullscreen ^ true;
+  settings.fullscreen = !settings.fullscreen;
   fFullScreen();
 }
+/*AweSome mode*/
+/**
+ * Schakelt tussen de Awesome visuele stijl en de Normale mode.
+ * Gebruikt gerichte selectie voor betere performance op ESP32 clients.
+ */
 function fAweSomeMode() {
-  let body = document.querySelector("body");
-  let bgimage = document.querySelector(".bgimage");
-  let clsslst;
+  const body = document.body;
+  const bgimage = document.querySelector(".bgimage");
+  const buttons = document.querySelectorAll(".rbut");
+  // Selecteer alleen directe kinderen van body (behalve het menu)
+  const mainElements = document.querySelectorAll("body > div:not(.menu)");
 
-  let buttons = document.querySelectorAll(".rbut");
-  let allElements = document.querySelectorAll("div");
   if (settings.awesome) {
-    console.log("Awesome:");
+    console.log("Modus: Awesome");
     body.classList.add("awesome");
 
-    /*console.log("body: ", allElements);*/
-    allElements.forEach((element) => {
-      if (element.parentElement.nodeName == "BODY") {
-        if (element.classList[0] !== "menu") {
-          clsslst = element.classList;
-          if (element.classList[0] === "bgimage") {
-            bgimage.classList.add("awesome");
-            bgimage.classList.add("ani");
-            setTimeout(() => {
-              bgimage.classList.add("ani");
-            }, 2000);
-          }
-          if (element.classList[0] === "clock") {
-            element.querySelector(".time").classList.add("awesome");
-            element.querySelector(".date").classList.add("awesome");
-          } else {
-            if (clsslst.contains("show")) {
-              clsslst.remove("show");
-              clsslst.add("ani");
-            }
-            clsslst.add("awesome");
-          }
-        }
+    mainElements.forEach((el) => {
+      const cls = el.classList;
+
+      if (cls.contains("bgimage")) {
+        cls.add("awesome", "ani");
+        // De timeout zorgt voor de vertraagde start van de animatie
+        setTimeout(() => cls.add("ani"), 2000);
+      } else if (cls.contains("clock")) {
+        el.querySelector(".time")?.classList.add("awesome");
+        el.querySelector(".date")?.classList.add("awesome");
+      } else {
+        // Wissel show voor ani als het item zichtbaar is
+        if (cls.contains("show")) cls.replace("show", "ani");
+        cls.add("awesome");
       }
     });
-    buttons.forEach((button) => {
-      clsslst = button.classList;
-      clsslst.add("awesome");
 
-      if (clsslst.contains("show")) {
-        clsslst.remove("show");
-        clsslst.add("ani");
-      }
+    buttons.forEach((btn) => {
+      btn.classList.add("awesome");
+      if (btn.classList.contains("show")) btn.classList.replace("show", "ani");
     });
   } else {
-    console.log("Normal:");
-    allElements.forEach((element) => {
-      if (element.parentElement.nodeName == "BODY") {
-        if (element.classList[0] !== "menu") {
-          if (element.classList[0] === "bgimage") {
-            element.classList.remove("ani");
-            setTimeout(() => {
-              body.classList.remove("awesome");
-            }, 2000);
-          }
-          if (element.classList[0] === "clock") {
-            element.querySelector(".time").classList.remove("awesome");
-            element.querySelector(".date").classList.remove("awesome");
-          }
-          if (element.classList[0] === "loader") {
-            element.classList.remove("awesome");
-          } else {
-            clsslst = element.classList;
-            if (clsslst.contains("ani")) {
-              clsslst.add("show");
-              clsslst.remove("awesome");
-              clsslst.remove("ani");
-            }
-          }
+    console.log("Modus: Normaal");
+
+    mainElements.forEach((el) => {
+      const cls = el.classList;
+
+      if (cls.contains("bgimage")) {
+        cls.remove("ani");
+        setTimeout(() => body.classList.remove("awesome"), 2000);
+      } else if (cls.contains("clock")) {
+        el.querySelector(".time")?.classList.remove("awesome");
+        el.querySelector(".date")?.classList.remove("awesome");
+      } else if (cls.contains("loader")) {
+        cls.remove("awesome");
+      } else {
+        // Herstel de normale 'show' status
+        if (cls.contains("ani")) {
+          cls.add("show");
+          cls.remove("awesome", "ani");
         }
       }
     });
-    setTimeout(() => {
-      bgimage.classList.remove("awesome");
-    }, 2000);
-    buttons.forEach((button) => {
-      clsslst = button.classList;
-      if (clsslst.contains("ani")) {
-        clsslst.add("show");
-        clsslst.remove("awesome");
-        clsslst.remove("ani");
+
+    setTimeout(() => bgimage?.classList.remove("awesome"), 2000);
+
+    buttons.forEach((btn) => {
+      if (btn.classList.contains("ani")) {
+        btn.classList.add("show");
+        btn.classList.remove("awesome", "ani");
       }
-      clsslst.remove("awesome");
+      btn.classList.remove("awesome");
     });
   }
 }
+/**
+ * Toggle functie voor de Awesome Mode setting.
+ */
 function ftoggleAweSomeMode() {
-  settings.awesome = settings.awesome ^ true;
+  // Bitwise XOR (^) is prima, maar !settings.awesome is leesbaarder
+  settings.awesome = !settings.awesome;
   fAweSomeMode();
 }
+
+/*Ergonomie*/
+/**
+ * Schakelt de UI-indeling om voor linkshandig gebruik.
+ */
 function fLeftHand() {
-  let body = document.querySelector("body").classList;
-  let profilebut = document.querySelector(".rbut").classList;
-  console.log("profilebut:", profilebut);
-  let clock = document.querySelector(".clock").classList;
-  if (settings.lefthand) {
-    body.add("left");
-    profilebut.add("left");
-    clock.add("left");
-  } else {
-    body.remove("left");
-    profilebut.remove("left");
-    clock.remove("left");
+  const body = document.body;
+  const profileBut = document.getElementById("Profile");
+  const clock = document.querySelector(".clock");
+
+  // Gebruik toggle met de boolean waarde van de setting
+  // Zie [MDN classList.toggle](https://developer.mozilla.org)
+  body.classList.toggle("left", settings.lefthand);
+
+  if (profileBut) {
+    profileBut.classList.toggle("left", settings.lefthand);
   }
+
+  if (clock) {
+    clock.classList.toggle("left", settings.lefthand);
+  }
+
+  console.log("Linkshandige modus:", settings.lefthand);
 }
+/**
+ * Toggle functie voor de Left Hand setting.
+ */
 function ftoggleLeftHand() {
-  settings.lefthand = settings.lefthand ^ true;
+  settings.lefthand = !settings.lefthand;
   fLeftHand();
 }
+
 /*Browser*/
 function fisBrowserOnline() {
   if (settings.internetaccess && navigator.onLine) {
